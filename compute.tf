@@ -15,7 +15,7 @@ provider "google" {
 resource "google_compute_instance" "default" {
  project = "${var.project}"
  zone = "${var.zone}"
- name = "tf-compute-1"
+ name = "bastion"
  machine_type = "f1-micro"
  boot_disk {
    initialize_params {
