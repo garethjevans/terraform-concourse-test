@@ -1,3 +1,7 @@
+variable "project" {
+  type = "string"
+}
+
 data "google_compute_zones" "available" {}
 
 resource "google_compute_instance" "default" {
