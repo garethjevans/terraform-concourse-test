@@ -12,8 +12,6 @@ provider "google" {
  region = "${var.region}"
 }
 
-data "google_compute_zones" "available" {}
-
 resource "google_compute_instance" "default" {
  project = "${var.project}"
  zone = "${var.zone}"
