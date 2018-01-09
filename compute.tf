@@ -12,23 +12,18 @@ provider "google" {
  region = "${var.region}"
 }
 
-resource "google_compute_instance" "default" {
- project = "${var.project}"
- zone = "${var.zone}"
- name = "bastion"
- machine_type = "f1-micro"
- boot_disk {
-   initialize_params {
-     image = "ubuntu-1604-xenial-v20170328"
-   }
- }
- network_interface {
-   network = "default"
-   access_config {
-   }
- }
+resource "google_compute_address" "jumpbox-ip" {
+  name = "jumpbox-ip"
 }
 
-output "instance_id" {
- value = "${google_compute_instance.default.self_link}"
+output "jumpbox_url" {
+  value = "${google_compute_address.jumpbox-ip.address}:22"
+}
+
+output "external_ip" {
+  value = "${google_compute_address.jumpbox-ip.address}"
+}
+
+output "director_address" {
+  value = "https://${google_compute_address.jumpbox-ip.address}:25555"
 }
