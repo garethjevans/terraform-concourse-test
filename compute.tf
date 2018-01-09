@@ -14,6 +14,7 @@ provider "google" {
 
 resource "google_compute_address" "jumpbox-ip" {
   name = "jumpbox-ip"
+  project = "${var.project}"
 }
 
 output "jumpbox_url" {
